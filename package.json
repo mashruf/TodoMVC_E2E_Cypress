@@ -1,0 +1,16 @@
+{
+  "name": "todomvc_e2e_cypress",
+  "version": "1.0.0",
+  "description": "Practice Cypress",
+  "license": "ISC",
+  "author": "Mashruf Mahabub",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/cypress": "^0.1.6",
+    "cypress": "^14.0.3"
+  }
+}
