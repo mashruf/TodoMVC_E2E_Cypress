@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+/// <reference types="cypress" />
+
 Cypress.Commands.add("visitWebsite",()=>{
     cy.visit("https://todomvc.com/");
     cy.get(".applist-item").contains("React").click();
