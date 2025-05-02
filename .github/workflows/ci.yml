@@ -50,20 +50,4 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
 
-      # Step 7: Upload Mochawesome Report
-      - name: Run Cypress tests with Mochawesome reporter
-        run: npx cypress run --reporter cypress-mochawesome-reporter
-
-      - name: Merge Mochawesome JSON reports
-        run: |
-          npx mochawesome-merge cypress/reports/html/jsons/*.json > mochawesome.json
-
-      - name: Generate HTML report
-        run: |
-          npx marge mochawesome.json --reportDir cypress/reports/html
-
-      - name: Upload HTML report as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: mochawesome-report
-          path: cypress/reports/html
+      
