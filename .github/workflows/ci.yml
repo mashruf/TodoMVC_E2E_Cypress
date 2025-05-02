@@ -36,7 +36,7 @@ jobs:
 
       # Step 5: Upload Cypress Videos
       - name: Upload Cypress Videos
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
@@ -44,7 +44,7 @@ jobs:
 
       # Step 6: Upload Cypress Screenshots
       - name: Upload Cypress Screenshots
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
