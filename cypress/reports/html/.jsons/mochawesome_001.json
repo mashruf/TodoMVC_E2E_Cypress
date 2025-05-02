@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-05-02T19:19:57.229Z",
+    "end": "2025-05-02T19:20:05.178Z",
+    "duration": 7949,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b8995856-c0c2-45f1-876d-0ae9fad9cb49",
+      "title": "",
+      "fullFile": "cypress\\e2e\\CaseSensitivity.cy.js",
+      "file": "cypress\\e2e\\CaseSensitivity.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c0668782-dda0-4e17-aaa5-c05cb19251f7",
+          "title": "Case sensitivity",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Filter should be case sensitive",
+              "fullTitle": "Case sensitivity Filter should be case sensitive",
+              "timedOut": null,
+              "duration": 4336,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visitWebsite();\ncy.get(\".new-todo\").type(\"Todo 1{enter}\");\ncy.get(\".new-todo\").type(\"Todo 2{enter}\");\ncy.get(\".todo-list>li\").eq(1).find(\".toggle\").should(\"be.exist\").click();\ncy.get(\".todo-list\").eq(0).should(\"not.equal\", \"todo 1\");\ncy.get(\".todo-list\").eq(1).should(\"not.equal\", \"todo 2\");\ncy.get(\".filters>li:nth-child(2)\").click();\ncy.get(\".view\").should(\"not.equal\", \"todo 1\");\ncy.get(\".filters>li:nth-child(3)\").click();\ncy.get(\".view\").should(\"not.equal\", \"todo 2\");",
+              "err": {},
+              "uuid": "5c85650b-8164-4d29-9bf4-56ffeb627322",
+              "parentUUID": "c0668782-dda0-4e17-aaa5-c05cb19251f7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5c85650b-8164-4d29-9bf4-56ffeb627322"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4336,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

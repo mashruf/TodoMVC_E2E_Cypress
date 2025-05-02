@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-05-02T19:20:45.964Z",
+    "end": "2025-05-02T19:20:52.045Z",
+    "duration": 6081,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "14ed78ba-4f03-4a81-a766-09e662679048",
+      "title": "",
+      "fullFile": "cypress\\e2e\\MarkTodoAsCompleted.cy.js",
+      "file": "cypress\\e2e\\MarkTodoAsCompleted.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b32b7f61-bd9c-4ed6-9349-afaab16f8568",
+          "title": "Mark todo",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should mark a todo as completed",
+              "fullTitle": "Mark todo Should mark a todo as completed",
+              "timedOut": null,
+              "duration": 2920,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".new-todo\").type(\"New todo{enter}\");\ncy.get(\".view\").should(\"contain\", \"New todo\");\ncy.get(\".view\").find(\".toggle\").should(\"be.exist\").click();\ncy.get(\".todo-count\").should(\"contain\", \"0 items left!\");",
+              "err": {},
+              "uuid": "828d6d15-4feb-413f-a6dc-d80bfade9474",
+              "parentUUID": "b32b7f61-bd9c-4ed6-9349-afaab16f8568",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "828d6d15-4feb-413f-a6dc-d80bfade9474"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2920,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
