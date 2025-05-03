@@ -29,20 +29,16 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Cypress Tests with Mochawesome Reporter
+      # Step 4: Run Cypress Tests
+      - name: Run Cypress Tests
         run: |
-          npx cypress run --browser ${{ matrix.browser }} \
-            --reporter mochawesome \
-            --reporter-options reportDir=cypress/reports/mochawesome,overwrite=false,html=false,json=true
-      
+          npx cypress run --browser ${{ matrix.browser }}
 
-            - name: Generate Mochawesome HTML report
-            run: |
-              npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome/merged.json
-              npx marge cypress/reports/mochawesome/merged.json \
-                --reportDir cypress/reports/html \
-                --reportFilename index.html
-          
+      - name: Upload Cypress Mochawesome Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: cypress/reports/html
   
 
       
