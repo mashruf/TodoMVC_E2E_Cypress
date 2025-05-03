@@ -44,6 +44,7 @@ jobs:
           path: cypress/screenshots
 
       - name: Upload Cypress Mochawesome Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
