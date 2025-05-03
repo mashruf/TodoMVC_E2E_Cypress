@@ -12,49 +12,39 @@ jobs:
 
     strategy:
       matrix:
-        browser: [chrome]  # You can add 'firefox', 'electron' if desired
+        browser: [chrome]  # Add more browsers if needed
 
     steps:
-      # Step 1: Checkout the code
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # Step 3: Install dependencies
       - name: Install Dependencies
         run: npm ci
 
-      # Step 4: Run Cypress Tests
-      - name: Run Cypress Tests
+      - name: Run Cypress Tests with Mochawesome and Screenshots
         run: |
-          npx cypress run --browser ${{ matrix.browser }}
+          npx cypress run --browser ${{ matrix.browser }} \
+            --reporter mochawesome \
+            --reporter-options reportDir=cypress/reports/mochawesome,overwrite=false,html=false,json=true
 
-      # Step 5: Upload Cypress Videos
-      - name: Upload Cypress Videos
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-videos
-          path: cypress/videos
+      - name: Merge and Generate Mochawesome HTML Report (with screenshots)
+        run: |
+          npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome/merged.json
+          npx marge cypress/reports/mochawesome/merged.json \
+            --reportDir cypress/reports/html \
+            --reportFilename index.html \
+            --inlineAssets true \
+            --charts true
 
-      # Step 6: Upload Cypress Screenshots
-      - name: Upload Cypress Screenshots
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-      - name: Upload Cypress Mochawesome Report
+      - name: Upload HTML Report
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: cypress/reports/html
-  
-
-      
+          path: |
+            cypress/reports/html/
+            cypress/screenshots/
