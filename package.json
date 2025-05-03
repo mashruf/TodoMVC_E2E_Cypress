@@ -7,8 +7,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "test": "cypress run",
+  "report:generate": "mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome/merged.json && marge cypress/reports/mochawesome/merged.json --reportDir cypress/reports/html --reportFilename index.html --inline"
+},
   "devDependencies": {
     "@types/cypress": "^0.1.6",
     "cypress": "^14.3.2",
