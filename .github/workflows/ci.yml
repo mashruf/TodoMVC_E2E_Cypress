@@ -2,9 +2,9 @@ name: Cypress E2E Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   cypress-run:
@@ -12,43 +12,34 @@ jobs:
 
     strategy:
       matrix:
-        browser: [chrome]  # You can add 'firefox', 'electron' if desired
+        browser: [chrome]
 
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # Step 3: Install dependencies
       - name: Install Dependencies
         run: npm ci
 
-      # Step 4: Run Cypress Tests
       - name: Run Cypress Tests
         run: |
           npx cypress run --browser ${{ matrix.browser }}
 
+      - name: Merge JSONs and Generate HTML Report
+        run: |
+          npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome/merged.json
+          npx marge cypress/reports/mochawesome/merged.json \
+            --reportDir cypress/reports/html \
+            --reportFilename index.html \
+            --inline
 
-      # Step 6: Upload Cypress Screenshots
-      - name: Upload Cypress Screenshots
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-      - name: Upload Cypress Mochawesome Report
-        if: always()
+      - name: Upload Report Artifact
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: cypress/reports/html
-  
-
-      
+          path: cypress/reports/html/
